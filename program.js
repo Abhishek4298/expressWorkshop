@@ -1,14 +1,10 @@
 const express = require('express')
 const app = express()
-const bodyparser = require('body-parser');
-const port = process.argv[2]
-const path = require("path");
+const path = require('path');
 
+const process = require('process')
 
-app.use(bodyparser.urlencoded({extended: false}));
-app.post('/form', function(req,res) {
-  res.send(req.body.str.split('').reverse().join(''));
-}) 
+app.use(require('stylus').middleware(process.argv[3])) 
+app.use(require('stylus').middleware('public'))
 
-
-app.listen(port)
+app.listen(process.argv[2])
